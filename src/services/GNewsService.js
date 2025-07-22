@@ -41,6 +41,7 @@ const fetchTopArticles = async ({ lang, category, country, max }) => {
 const searchArticles = async (query) => {
   const cacheKey = `search-articles-${query}`;
   const cachedArticles = newsCache.get(cacheKey);
+  console.log("cacheKey:", newsCache.keys());
   if (cachedArticles) {
     return cachedArticles;
   }
@@ -62,4 +63,6 @@ const searchArticles = async (query) => {
 module.exports = {
   searchArticles,
   fetchTopArticles,
+    newsCache,
+    
 };
