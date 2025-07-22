@@ -2,7 +2,7 @@ const express = require("express");
 
 require("dotenv").config({ quiet: true });
 
-const { fetchTopArticles } = require("./src/services/GNewsService");
+const { fetchTopArticles, searchArticles } = require("./src/services/GNewsService");
 
 const app = express();
 
@@ -18,6 +18,22 @@ app.get("/articles", async (req, res) => {
       country: query.country,
       max: query.max,
     });
+    res.json(articles);
+  } catch (error) {
+    console.error("Error fetching articles:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.get("/search", async (req, res) => {
+  const query = req.query.q;
+
+  if (!query) {
+    return res.status(400).json({ error: "Query parameter is required" });
+  }
+
+  try {
+    const articles = await searchArticles(query);
     res.json(articles);
   } catch (error) {
     console.error("Error fetching articles:", error);
