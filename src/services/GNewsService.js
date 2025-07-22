@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const HOST = "https://gnews.io/api/v4";
+const BASE_URL = "https://gnews.io/api/v4";
 const API_KEY = process.env.GNEWS_API_KEY;
 
 const DEFAULT_PARAMS = {
@@ -11,7 +11,7 @@ const DEFAULT_PARAMS = {
 };
 
 const fetchTopArticles = async ({ lang, category, country, max }) => {
-  const response = await axios.get(`${HOST}/top-headlines`, {
+  const response = await axios.get(`${BASE_URL}/top-headlines`, {
     params: {
       category: category || DEFAULT_PARAMS.category,
       lang: lang || DEFAULT_PARAMS.lang,
@@ -25,7 +25,7 @@ const fetchTopArticles = async ({ lang, category, country, max }) => {
 };
 
 const searchArticles = async (query) => {
-  const response = await axios.get(`${HOST}/search`, {
+  const response = await axios.get(`${BASE_URL}/search`, {
     params: {
       q: query,
       lang: DEFAULT_PARAMS.lang,
