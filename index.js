@@ -1,6 +1,10 @@
 const express = require("express");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./swagger.json");
+const dotenv = require("dotenv");
 
-require("dotenv").config({ quiet: true });
+
+dotenv.config({ debug: false });
 
 const { fetchTopArticles, searchArticles } = require("./src/services/GNewsService");
 
@@ -44,6 +48,8 @@ app.get("/search", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 const port = process.env.PORT || 3000;
 
