@@ -11,12 +11,16 @@ app.use(express.json());
 app.get("/articles", async (req, res) => {
   const query = req.query;
 
+  if (!query.n) {
+    return res.status(400).json({ error: "Parameter 'n' (number of articles) is required" });
+  }
+
   try {
     const articles = await fetchTopArticles({
       lang: query.lang,
       category: query.category,
       country: query.country,
-      max: query.max,
+      max: query.n,
     });
     res.json(articles);
   } catch (error) {
