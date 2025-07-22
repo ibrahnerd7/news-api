@@ -4,7 +4,8 @@
   "description": "Simple API that interacts with a public news API for fetching articles",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "node index.js"
   },
   "author": "ibrahmaina7@gmail.com",
   "license": "MIT",
