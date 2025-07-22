@@ -3,7 +3,7 @@
   "info": {
     "title": "GNews API",
     "version": "1.0.0",
-    "description": "A wrapper for GNews API with in-memory caching"
+    "description": "Simple API that interacts with a public news API for fetching articles"
   },
   "paths": {
     "/articles": {
