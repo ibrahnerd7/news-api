@@ -13,6 +13,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
+                    sh 'npm install pm2 -g'
                     sh 'npm install'
                 }
             }
@@ -29,7 +30,7 @@ pipeline {
         stage('Start Server') {
             steps {
                 script {
-                    sh 'npm start'
+                    sh 'npm run start-server'
                 }
             }
         }
