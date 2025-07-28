@@ -4,6 +4,11 @@ pipeline {
     environment {
         GNEWS_API_KEY = credentials('GNEWS_API_KEY')
     }
+
+    tools {
+        nodejs 'Node 24.4.1'
+    }
+    
     stages {
         stage('Install Dependencies') {
             steps {
